@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "outDir": "./public",
+    "outDir": "dist/",
     "strict": true,
     "noImplicitReturns": true,
     "esModuleInterop": true,
