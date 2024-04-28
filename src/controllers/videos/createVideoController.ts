@@ -31,7 +31,7 @@ export default (
 
   const videoData: IVideo = {
     id: Date.now(),
-    canBeDownloaded: true,
+    canBeDownloaded: false,
     minAgeRestriction: null,
     createdAt: videoCreationTime.toISOString(),
     publicationDate: videoPublicationTime.toISOString(),

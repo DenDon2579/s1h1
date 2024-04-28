@@ -23,7 +23,7 @@ exports.default = (req, res) => {
     }
     const videoCreationTime = new Date();
     const videoPublicationTime = new Date(videoCreationTime.getTime() + 24 * 60 * 60 * 1000);
-    const videoData = Object.assign({ id: Date.now(), canBeDownloaded: true, minAgeRestriction: null, createdAt: videoCreationTime.toISOString(), publicationDate: videoPublicationTime.toISOString() }, newVideoRequestData);
+    const videoData = Object.assign({ id: Date.now(), canBeDownloaded: false, minAgeRestriction: null, createdAt: videoCreationTime.toISOString(), publicationDate: videoPublicationTime.toISOString() }, newVideoRequestData);
     __1.DB.createVideo(videoData);
     res.status(settings_1.HTTP_CODES.CREATED).json(videoData);
 };
