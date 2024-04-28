@@ -14,7 +14,7 @@ const canBeDownloadedValidator_1 = __importDefault(require("../../validators/vid
 const publicationDateValidator_1 = __importDefault(require("../../validators/videos/publicationDateValidator"));
 exports.default = (req, res) => {
     const videoUpdateData = req.body;
-    const errorMessages = (0, validators_1.validateObjectFields)(videoUpdateData, [
+    const errorsMessages = (0, validators_1.validateObjectFields)(videoUpdateData, [
         { fieldName: 'title', validator: titileValidator_1.default },
         { fieldName: 'author', validator: authorValidator_1.default },
         { fieldName: 'availableResolutions', validator: resolutionsValidator_1.default },
@@ -22,8 +22,8 @@ exports.default = (req, res) => {
         { fieldName: 'canBeDownloaded', validator: canBeDownloadedValidator_1.default },
         { fieldName: 'publicationDate', validator: publicationDateValidator_1.default },
     ]);
-    if (errorMessages) {
-        const errorObject = { errorMessages };
+    if (errorsMessages) {
+        const errorObject = { errorsMessages };
         res.status(settings_1.HTTP_CODES.BAD_REQUEST).json(errorObject);
         return;
     }

@@ -14,7 +14,7 @@ import { IErrorResult } from '../../../types/error';
 export default (req: Request, res: Response) => {
   const videoUpdateData: IUpdateVideoInputModel = req.body;
 
-  const errorMessages = validateObjectFields(videoUpdateData, [
+  const errorsMessages = validateObjectFields(videoUpdateData, [
     { fieldName: 'title', validator: titileValidator },
     { fieldName: 'author', validator: authorValidator },
     { fieldName: 'availableResolutions', validator: resolutionsValidator },
@@ -23,8 +23,8 @@ export default (req: Request, res: Response) => {
     { fieldName: 'publicationDate', validator: publicationDateValidator },
   ]);
 
-  if (errorMessages) {
-    const errorObject: IErrorResult = { errorMessages };
+  if (errorsMessages) {
+    const errorObject: IErrorResult = { errorsMessages };
     res.status(HTTP_CODES.BAD_REQUEST).json(errorObject);
     return;
   }

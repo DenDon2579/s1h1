@@ -4,5 +4,5 @@ export interface IFieldError {
 }
 
 export interface IErrorResult {
-  errorMessages: IFieldError[];
+  errorsMessages: IFieldError[];
 }

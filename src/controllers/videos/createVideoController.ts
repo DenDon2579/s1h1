@@ -13,25 +13,28 @@ export default (
   res: Response
 ) => {
   const newVideoRequestData = req.body;
-  const errorMessages = validateObjectFields(newVideoRequestData, [
+  const errorsMessages = validateObjectFields(newVideoRequestData, [
     { fieldName: 'title', validator: titileValidator },
     { fieldName: 'author', validator: authorValidator },
     { fieldName: 'availableResolutions', validator: resolutionsValidator },
   ]);
 
-  if (errorMessages) {
-    const errorObject: IErrorResult = { errorMessages };
+  if (errorsMessages) {
+    const errorObject: IErrorResult = { errorsMessages };
     res.status(HTTP_CODES.BAD_REQUEST).json(errorObject);
     return;
   }
-  const videoCreationTime = new Date().toISOString();
+  const videoCreationTime = new Date();
+  const videoPublicationTime = new Date(
+    videoCreationTime.getTime() + 24 * 60 * 60 * 1000
+  );
 
   const videoData: IVideo = {
     id: Date.now(),
     canBeDownloaded: true,
     minAgeRestriction: null,
-    createdAt: videoCreationTime,
-    publicationDate: videoCreationTime,
+    createdAt: videoCreationTime.toISOString(),
+    publicationDate: videoPublicationTime.toISOString(),
     ...newVideoRequestData,
   };
 
