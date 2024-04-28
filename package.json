@@ -4,7 +4,9 @@
   "main": "dist/src/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently \"tsc -w\" \"nodemon dist/src\""
+    "dev": "concurrently \"tsc -w\" \"nodemon dist/src\"",
+    "build": "tsc",
+    "start": "node dist/src"
   },
   "dependencies": {
     "@types/cors": "^2.8.17",
