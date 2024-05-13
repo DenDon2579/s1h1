@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-import { DB } from '../..';
 import { HTTP_CODES } from '../../settings';
+import PostRepository from '../../data/repos/PostRepository';
 
 export default (req: Request, res: Response) => {
-  const isDeleted = DB.deleteVideo(+req.params.id);
-  console.log(isDeleted);
-  if (isDeleted) {
-    res.sendStatus(HTTP_CODES.NO_CONTENT);
+  const result = PostRepository.updateById(req.params.id, req.body);
+  if (result) {
+    res.status(HTTP_CODES.NO_CONTENT).json(result);
     return;
   }
   res.sendStatus(HTTP_CODES.NOT_FOUND);

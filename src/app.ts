@@ -1,13 +1,14 @@
 import Express from 'express';
-
-import isValidResolutions from './validators/videos/resolutionsValidator';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { videosRouter } from './routers/videos';
+import { blogsRouter } from './routers/blogs';
+import { postsRouter } from './routers/posts';
 import { testingRouter } from './routers/testing';
 
 export const app = Express();
 
 app.use(bodyParser.json()).use(cors());
-app.use('/videos', videosRouter);
+
+app.use('/blog', blogsRouter);
+app.use('/post', postsRouter);
 app.use('/testing', testingRouter);
